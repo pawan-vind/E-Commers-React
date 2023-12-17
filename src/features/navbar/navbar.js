@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon, ShoppingCartIcon } from '@heroicons/react/24/outline'
-
+import { Link } from 'react-router-dom'
 const user = {
   name: 'Tom Cook',
   email: 'tom@example.com',
@@ -44,6 +44,7 @@ function Navbar({children}) {
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                   <div className="flex h-16 items-center justify-between">
                     <div className="flex items-center">
+                      <Link to="/">
                       <div className="flex-shrink-0">
                         <img
                           className="h-8 w-8"
@@ -51,6 +52,8 @@ function Navbar({children}) {
                           alt="Your Company"
                         />
                       </div>
+                      </Link>
+                      
                       <div className="hidden md:block">
                         <div className="ml-10 flex items-baseline space-x-4">
                           {navigation.map((item) => (
@@ -73,6 +76,8 @@ function Navbar({children}) {
                     </div>
                     <div className="hidden md:block">
                       <div className="ml-4 flex items-center md:ml-6">
+                        <Link to="/cartpage" >
+
                         <button
                           type="button"
                           className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
@@ -80,6 +85,7 @@ function Navbar({children}) {
                           <span className="absolute -inset-1.5" />
                           <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
                         </button>
+                        </Link>
                         <span className="inline-flex items-center rounded-md mb-5 bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">3</span>
 
   
@@ -163,6 +169,7 @@ function Navbar({children}) {
                         <div className="text-base font-medium leading-none text-white">{user.name}</div>
                         <div className="text-sm font-medium leading-none text-gray-400">{user.email}</div>
                       </div>
+                      <Link to="/cartpage">
                       <button
                         type="button"
                         className="relative ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
@@ -171,6 +178,7 @@ function Navbar({children}) {
                         <span className="sr-only">View notifications</span>
                         <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
                       </button>
+                      </Link>
                       <span className="inline-flex items-center rounded-md mb-7 -ml-3 bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">3</span>
 
                     </div>
