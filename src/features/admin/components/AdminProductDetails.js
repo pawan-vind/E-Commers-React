@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { RadioGroup } from "@headlessui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProductByIdAsync, selectProductById } from "../ProductSlice";
 import { useParams } from "react-router-dom";
-import { addToCartAsync, selectItems } from "../../cart/CartSlice";
-import { selectLoggedInUser } from "../../Auth/AuthSlice";
+import { addToCartAsync } from "../../cart/CartSlice";
+// import { selectLoggedInUser } from "../../Auth/AuthSlice";
+import { selectProductById, fetchProductByIdAsync } from "../../product-list/ProductSlice";
 import { discountPrice } from "../../../app/constant";
-import { useAlert } from "react-alert";
+import { selectloggedInUser } from "../../Auth/AuthSlice";
 
 const colors = [
   { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
@@ -38,33 +38,25 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function ProductDetail() {
+export default function AdminProductDetail() {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [selectedSize, setSelectedSize] = useState(sizes[2]);
   const product = useSelector(selectProductById);
   const dispatch = useDispatch();
   const params = useParams()
-  // const user = useSelector(selectLoggedInUser)
-  const items = useSelector(selectItems)
-  const alert = useAlert()
+  const user = useSelector(selectloggedInUser)
 
   const handleCart = (e)=>{
     e.preventDefault()
-    if(items.findIndex(item =>item.product.id === product.id) < 0){
-      const newItem = {product: product.id, quantity:1}
-     dispatch(addToCartAsync(newItem))
-     alert.success("Item Added to Cart")
-    }else{
-      alert.info("Item Already Added");
-      console.log("item Already Added")
-    }
-
+    const newItem = {...product, quantity:1,}
+    delete newItem['id'];
+   dispatch(addToCartAsync(newItem))
   }
 
   useEffect(() => {
     dispatch(fetchProductByIdAsync(params.id))
   }, [dispatch, params.id])
-  console.log(product)
+  
   //  todo: inm server data we will color and size etc
   return (
     <div className="bg-white">
@@ -315,7 +307,6 @@ export default function ProductDetail() {
               >
                 Add to cart
               </button>
-              
             </form>
           </div>
 
