@@ -56,11 +56,11 @@ export default function Login() {
                 htmlFor="email"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Email address
+                Email or Number
               </label>
               <div className="mt-2">
                 <input
-                  id="email"
+                  id="text"
                   // value="pawan@gmail.com"
                   {...register("email", {
                     required: "Email is required",
@@ -98,7 +98,6 @@ export default function Login() {
               <div className="mt-2">
                 <input
                   id="password"
-                  // value="Pawan_0915@"
                   {...register("password", {
                     required: "Password is required",
                     pattern: {
@@ -109,12 +108,12 @@ export default function Login() {
                     },
                   })}
                   type="password"
+                  autoComplete="current-password"
+                  required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
                 {errors.password && (
-                  <p className="text-red-500">
-                    {error && errors.password.message}
-                  </p>
+                  <p className="text-red-500">{errors.password.message}</p>
                 )}
               </div>
             </div>

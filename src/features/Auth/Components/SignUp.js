@@ -43,7 +43,12 @@ export default function SignUp() {
             className="space-y-6"
             onSubmit={handleSubmit((data) => {
               dispatch(
-                createUserAsync({ email: data.email, password: data.password, addresses:[], role: 'user' })
+                createUserAsync({
+                  email: data.email,
+                  password: data.password,
+                  addresses: [],
+                  role: "user",
+                })
               );
               console.log(data);
             })}
@@ -53,7 +58,7 @@ export default function SignUp() {
                 htmlFor="email"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Email address
+                Email or Number
               </label>
               <div className="mt-2">
                 <input
