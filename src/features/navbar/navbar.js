@@ -87,8 +87,8 @@ function Navbar({ children }) {
                     <Link to="/">
                       <div className="flex-shrink-0">
                         <img
-                          className="h-8 w-8"
-                          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                          className="h-8 w-8 rounded-full"
+                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREO17hg6KvLlweeZWN0LCEdi-OXM9qGpbQ9w&s"
                           alt="Your Company"
                         />
                       </div>
@@ -274,26 +274,35 @@ function Navbar({ children }) {
         </Disclosure>
 
         <header className="bg-white shadow w-full">
-          <div class="flex justify-center w-full max-w-screen-lg">
-            <input
-              type="text"
-              placeholder="Search products..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              class="w-full px-4 py-2 border rounded-md"
-            />
-          </div>
-        </header>
-        <ul>
+  <div className="flex justify-center items-center w-full py-4 px-4 sm:px-6 lg:px-8">
+    <div className="relative w-full max-w-md">
+      <input
+        type="text"
+        placeholder="Search products..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+      />
+      <button
+        type="button"
+        className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-indigo-600"
+      >
+        🔍
+      </button>
+    </div>
+  </div>
+</header>
+
+        {/* <ul>
           {filteredProducts.map((product) => (
             <li key={product.id}>
               {product.title} ({product.category})
             </li>
           ))}
-        </ul>
+        </ul> */}
         <main>
           <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-            {children}
+            {children}  
           </div>
         </main>
       </div>
