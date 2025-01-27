@@ -171,13 +171,41 @@ export default function ProductList() {
           handleFilter={handleFilter}
           filters={filters}
         ></MobileFilter>
-
-        <main className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
+  
+        {/* Banner Section */}
+        <div className="relative bg-gray-900">
+          <div className="absolute inset-0">
+            <img
+              className="h-full w-full object-cover opacity-50"
+              src="https://plus.unsplash.com/premium_photo-1664286788921-8d69e16a0b65?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="E-commerce Banner"
+            />
+          </div>
+          <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+              Welcome to Our Store!
+            </h1>
+            <p className="mt-4 text-lg text-gray-300">
+              Discover amazing deals and explore our latest collections today.
+            </p>
+            <div className="mt-6">
+              <a
+                href="#products-heading"
+                className="inline-block rounded-md bg-indigo-600 px-6 py-3 text-base font-medium text-white hover:bg-indigo-700"
+              >
+                Shop Now
+              </a>
+            </div>
+          </div>
+        </div>
+        {/* End of Banner */}
+  
+        <main className="mx-auto max-w-7xl px-4 py-0 sm:px-6">
+          <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-10">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900">
               All Products
             </h1>
-
+  
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
                 <div>
@@ -189,7 +217,7 @@ export default function ProductList() {
                     />
                   </Menu.Button>
                 </div>
-
+  
                 <Transition
                   as={Fragment}
                   enter="transition ease-out duration-100"
@@ -223,7 +251,7 @@ export default function ProductList() {
                   </Menu.Items>
                 </Transition>
               </Menu>
-
+  
               <button
                 type="button"
                 className="-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-7"
@@ -241,19 +269,19 @@ export default function ProductList() {
               </button>
             </div>
           </div>
-
+  
           <section aria-labelledby="products-heading" className="pb-24 pt-6">
             <h2 id="products-heading" className="sr-only">
               Products
             </h2>
-
+  
             <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
               {/* Filters */}
               <DesktopFilter
                 handleFilter={handleFilter}
                 filters={filters}
               ></DesktopFilter>
-
+  
               {/* Product grid */}
               <div className="lg:col-span-3">
                 <ProductGrid products={products} status={status}></ProductGrid>
@@ -273,9 +301,8 @@ export default function ProductList() {
         </div>
       </div>
     </div>
-
-    // product List
   );
+  
 }
 
 function MobileFilter({
