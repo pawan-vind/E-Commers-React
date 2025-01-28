@@ -30,9 +30,9 @@ function ProductForm() {
   const params = useParams();
   const [openModal, setopenModal] = useState(null);
   const selectedProduct = useSelector(selectProductById);
-  const alert = useAlert()
-console.log("first")
-// console.log(selectedProduct.deleted == null)
+  const alert = useAlert();
+  console.log("first");
+  // console.log(selectedProduct.deleted == null)
   useEffect(() => {
     if (params.id) {
       dispatch(fetchProductByIdAsync(params.id));
@@ -63,7 +63,7 @@ console.log("first")
     product.deleted = true;
     dispatch(updateProductAsync(product));
   };
-  console.log(selectedProduct)
+  console.log(selectedProduct);
 
   return (
     <>
@@ -93,11 +93,11 @@ console.log("first")
             product.rating = selectedProduct.rating || 0;
             product.id = params.id;
             dispatch(updateProductAsync(product));
-            alert.success("Product Updated Sucessfully")
+            alert.success("Product Updated Sucessfully");
             reset();
           } else {
             dispatch(createProductAsync(product));
-            alert.success("Product created Sucessfully")
+            alert.success("Product created Sucessfully");
             reset();
           }
         })}
@@ -109,7 +109,11 @@ console.log("first")
             </h2>
 
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-               { selectedProduct && selectedProduct.deleted && <h2 className="text-red-600 col-span-6">This product is deleted</h2>}
+              {selectedProduct && selectedProduct.deleted && (
+                <h2 className="text-red-600 col-span-6">
+                  This product is deleted
+                </h2>
+              )}
               <div className="sm:col-span-6">
                 <label
                   htmlFor="title"
@@ -268,104 +272,47 @@ console.log("first")
                 <div className="mt-2">
                   <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
                     <input
-                      type="text"
+                      type="file"
                       {...register("thumbnail", {
                         required: "thumbnail is required",
                       })}
                       id="thumbnail"
+                      accept="image/*"
                       className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
               </div>
 
-              <div className="sm:col-span-6">
-                <label
-                  htmlFor="image1"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  image1
-                </label>
-                <div className="mt-2">
-                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
-                    <input
-                      type="text"
-                      {...register("image1", {
-                        required: "image1 is required",
-                      })}
-                      id="image1"
-                      className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                    />
+              {["image1", "image2", "image3", "image4"].map(
+                (imageField, index) => (
+                  <div className="sm:col-span-6" key={imageField}>
+                    <label
+                      htmlFor={imageField}
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      Image {index + 1}
+                    </label>
+                    <div className="mt-2">
+                      <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
+                        <input
+                          type="file"
+                          {...register(imageField, {
+                            required: `${imageField} is required`,
+                          })}
+                          id={imageField}
+                          accept="image/*"
+                          className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                        />
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div className="sm:col-span-6">
-                <label
-                  htmlFor="image2"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  image2
-                </label>
-                <div className="mt-2">
-                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
-                    <input
-                      type="text"
-                      {...register("image2", {
-                        required: "image2 is required",
-                      })}
-                      id="image2"
-                      className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="sm:col-span-6">
-                <label
-                  htmlFor="image3"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  image3
-                </label>
-                <div className="mt-2">
-                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
-                    <input
-                      type="text"
-                      {...register("image3", {
-                        required: "image3 is required",
-                      })}
-                      id="image3"
-                      className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="sm:col-span-6">
-                <label
-                  htmlFor="image4"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  image4
-                </label>
-                <div className="mt-2">
-                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
-                    <input
-                      type="text"
-                      {...register("image4", {
-                        required: "image4 is required",
-                      })}
-                      id="image4"
-                      className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
-              </div>
+                )
+              )}
             </div>
           </div>
 
-          
-
           <div className="border-b border-gray-900/10 pb-12">
-
             <div className="mt-10 space-y-10">
               <fieldset>
                 <legend className="text-sm font-semibold leading-6 text-gray-900">
@@ -438,19 +385,20 @@ console.log("first")
                   </div>
                 </div>
               </fieldset>
-            
             </div>
           </div>
         </div>
-        {selectedProduct && <Modal
-          title={`Delete ${selectedProduct.title}`}
-          message="are you sure want to delete this Product"
-          dangerOption="Delete"
-          cancleOption="cancle"
-          cancleAct={() => setopenModal(null)}
-          dangerAct={handleDelete}
-          showModal={openModal}
-        ></Modal>}
+        {selectedProduct && (
+          <Modal
+            title={`Delete ${selectedProduct.title}`}
+            message="are you sure want to delete this Product"
+            dangerOption="Delete"
+            cancleOption="cancle"
+            cancleAct={() => setopenModal(null)}
+            dangerAct={handleDelete}
+            showModal={openModal}
+          ></Modal>
+        )}
 
         <div className="mt-6 flex items-center justify-end gap-x-6">
           <button
@@ -459,9 +407,12 @@ console.log("first")
           >
             Cancel
           </button>
-          {selectedProduct && !selectedProduct.deleted &&  (
+          {selectedProduct && !selectedProduct.deleted && (
             <button
-              onClick={(e)=>{e.preventDefault(); setopenModal(true)}}
+              onClick={(e) => {
+                e.preventDefault();
+                setopenModal(true);
+              }}
               className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
             >
               Delete
