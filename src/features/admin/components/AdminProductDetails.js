@@ -105,7 +105,7 @@ export default function AdminProductDetail() {
         <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
           <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
             <img
-              src={product.images[0]}
+              src={`http://localhost:8080/${product.image[0]}`}
               alt={product.title}
               className="h-full w-full object-cover object-center"
             />
@@ -113,14 +113,14 @@ export default function AdminProductDetail() {
           <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
             <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
               <img
-                src={product.images[1]}
+                src={`http://localhost:8080/${product.image[1]}`}
                 alt={product.title}
                 className="h-full w-full object-cover object-center"
               />
             </div>
             <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
               <img
-                src={product.images[2]}
+                src={`http://localhost:8080/${product.image[2]}`}
                 alt={product.title}
                 className="h-full w-full object-cover object-center"
               />
@@ -128,7 +128,7 @@ export default function AdminProductDetail() {
           </div>
           <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
             <img
-              src={product.images[3]}
+              src={`http://localhost:8080/${product.image[3]}`}
               alt={product.title}
               className="h-full w-full object-cover object-center"
             />
